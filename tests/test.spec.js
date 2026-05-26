@@ -1,8 +1,11 @@
 require('dotenv').config();
+const {firefox} = require('playwright');
 const {test} = require('@playwright/test');
 
 test.describe('Auth test', () => {
-  test('Login test', async ({page}) => {
+  test('Login test', async () => {
+    const browser = await firefox.launch();
+    const page = await browser.newPage();
     await authenticate(page);
   });
 });
